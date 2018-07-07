@@ -18,10 +18,15 @@ To make use of this repository you'll need the following software.
 3. Start Docker for macOS so that it is running
 4. Open a terminal session and change to the directory on your machine where you cloned the repository
 5. Build and start the environment:
+
     `docker-compose up --build -d`
+
 6. Connect to the Control Machine container
+
     `docker exec -it udemy-mastering-ansible_control_1 bash`
+
 7. Verify the Control Machine container is able to communicate with the Managed Node containers
+
     `ansible all -m ping`
 
 **Note:** the `ansible` directory on your host will be mounted to the Control Machine container under `/var/ansible`. Any changes you make on your host to the `ansible` directory will show up in your Control Machine container. This allows you to use a text editor, like [Atom](https://atom.io), to write your [Ansible](https://www.ansible.com) configuration on the host machine and run it in the Control Machine container without losing it once the containers are shutdown.
