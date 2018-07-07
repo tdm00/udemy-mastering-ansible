@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+  control:
+    build: ./control
+    stdin_open: true
+    tty: true
+    restart: always
+    volumes:
+      - type: bind
+        source: ./ansible
+        target: /var/ansible
+
+  lb01:
+    build: ./base
+    stdin_open: true
+    tty: true
+    restart: always
+
+  app01:
+    build: ./base
+    stdin_open: true
+    tty: true
+    restart: always
+
+  app02:
+    build: ./base
+    stdin_open: true
+    tty: true
+    restart: always
+
+  db01:
+    build: ./base
+    stdin_open: true
+    tty: true
+    restart: always
