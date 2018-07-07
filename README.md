@@ -10,7 +10,7 @@ To make use of this repository you'll need the following software.
 - macOS 10.13.5
 - [Docker for macOS 18.05+](https://www.docker.com/docker-mac)
 
-Note: I have only tested this on the Mac, but believe it should also work on a Linux system. For my Windows friends you may need to make modifications to the Dockerfile in the control and base directories. I don't have access to a Windows system to test.
+**Note:** I have only tested this on the Mac, but believe it should also work on a Linux system. For my Windows friends you may need to make modifications to the Dockerfile in the control and base directories. I don't have access to a Windows system to test.
 
 ## Getting Started
 1. [Clone the repository](https://help.github.com/articles/cloning-a-repository/) to your machine
@@ -24,7 +24,7 @@ Note: I have only tested this on the Mac, but believe it should also work on a L
 7. Verify the Control Machine container is able to communicate with the Managed Node containers
     `ansible all -m ping`
 
-Note: the `ansible` directory on your host will be mounted to the Control Machine container under `/var/ansible`. Any changes you make on your host to the `ansible` directory will show up in your Control Machine container. This allows you to use a text editor, like [Atom](https://atom.io), to write your [Ansible](https://www.ansible.com) configuration on the host machine and run it in the Control Machine container without losing it once the containers are shutdown.
+**Note:** the `ansible` directory on your host will be mounted to the Control Machine container under `/var/ansible`. Any changes you make on your host to the `ansible` directory will show up in your Control Machine container. This allows you to use a text editor, like [Atom](https://atom.io), to write your [Ansible](https://www.ansible.com) configuration on the host machine and run it in the Control Machine container without losing it once the containers are shutdown.
 
 ## Commands
 
