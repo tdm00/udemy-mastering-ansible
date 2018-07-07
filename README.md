@@ -41,3 +41,6 @@ To make use of this repository you'll need the following software.
 
 ### Shutdown The Environment
 `docker-compose down --remove-orphan`
+
+## Bugs, Corrections or Enhancements
+If you find a bug, something that needs to be corrected, or a possible enhancement, please [create an issue](https://help.github.com/articles/creating-an-issue/) or better yet submit the fix through a [Pull Request](https://help.github.com/articles/about-pull-requests/). 
