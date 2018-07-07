@@ -33,3 +33,8 @@ Temporary Items
 
 
 # End of https://www.gitignore.io/api/macos,ansible
+
+# Ignore the Ansible working directory to make it easier
+# to update this set of Docker files for the environment
+# without losing any Ansible work.
+ansible/
