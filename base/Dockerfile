@@ -1,7 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y openssh-server \
-      software-properties-common python-pip \
+RUN apt-get update && apt-get install -y openssh-server python-pip \
       && rm -rf /var/lib/apt/lists/*
 
 # Install python package

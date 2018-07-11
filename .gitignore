@@ -37,4 +37,8 @@ Temporary Items
 # Ignore the Ansible working directory to make it easier
 # to update this set of Docker files for the environment
 # without losing any Ansible work.
-ansible/
+ansible/*
+
+# Track the README.md file for the ansible directory so that
+# the directory is created on the inital clone
+!ansible/README.md
