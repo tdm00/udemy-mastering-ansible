@@ -23,7 +23,7 @@ To make use of this repository you'll need the following software.
 
 6. Connect to the Control Machine container
 
-    `docker exec -it udemy-mastering-ansible_control_1 bash`
+    `docker container exec -it udemy-mastering-ansible_control_1 bash`
 
 7. Verify the Control Machine container is able to communicate with the Managed Node containers
 
@@ -37,7 +37,7 @@ To make use of this repository you'll need the following software.
 `docker-compose up --build -d`
 
 ### Connect to the Environment
-`docker exec -it udemy-mastering-ansible_control_1 bash`
+`docker container exec -it udemy-mastering-ansible_control_1 bash`
 
 ### Shutdown The Environment
 `docker-compose down --remove-orphan`
