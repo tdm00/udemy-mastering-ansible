@@ -1,10 +1,12 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y openssh-server python-pip \
-      && rm -rf /var/lib/apt/lists/*
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
+	apt-get install -y openssh-server python3-pip && \
+	rm -rf /var/lib/apt/lists/*
 
 # Install python package
-RUN pip install --upgrade pip==9.0.3 && pip install netaddr deepdiff
+RUN pip3 install --upgrade pip==20.1 && \
+	pip3 install netaddr deepdiff
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd

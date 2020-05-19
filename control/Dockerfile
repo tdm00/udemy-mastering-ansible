@@ -1,14 +1,13 @@
 # Use an official Python runtime as a parent image
 FROM ubuntu:latest
 
-# Install python
-RUN apt-get update && apt-get install software-properties-common -y \
-      && apt-add-repository ppa:ansible/ansible -y \
-      && apt-get update && apt-get install ansible python-pip -y \
-      && rm -rf /var/lib/apt/lists/*
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
+	apt-get install -y openssh-server python3-pip && \
+	rm -rf /var/lib/apt/lists/*
 
 # Install python package
-RUN pip install --upgrade pip==9.0.3 && pip install netaddr deepdiff
+RUN pip3 install --upgrade pip==20.1 && \
+	pip3 install ansible netaddr deepdiff
 
 # Setup SSH access for remote systems
 RUN mkdir -p /root/.ssh/
