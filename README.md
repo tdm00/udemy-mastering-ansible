@@ -7,8 +7,8 @@ The topology of the course, provided by the instructor, is included in the [Topo
 
 ## Requirements
 To make use of this repository you'll need the following software.
-- macOS 10.13.5
-- [Docker for macOS 18.05+](https://www.docker.com/docker-mac)
+- macOS 10.13.5, tested on 12.4 (Monterey)
+- Docker for macOS 18.05+, tested on 20.10.14, Docker Desktop 4.8.2
 
 **Note:** I have only tested this on the Mac, but believe it should also work on a Linux system. For my Windows friends you may need to make modifications to the Dockerfile in the control and base directories. I don't have access to a Windows system to test.
 
