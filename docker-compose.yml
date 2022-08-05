@@ -34,3 +34,5 @@ services:
     stdin_open: true
     tty: true
     restart: always
+    ports:
+    - "3306:3306"

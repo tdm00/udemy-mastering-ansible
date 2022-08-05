@@ -1,0 +1,3 @@
+---
+# vars file for mysql
+mysql_rootpw: "opitime"

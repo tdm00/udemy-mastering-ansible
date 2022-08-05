@@ -1,0 +1,92 @@
+---
+- apt:
+    name: python3-pip
+    state: present
+
+- pip:
+    name: pymysql
+    state: present
+
+- name: install mysqld
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - mysql-server
+    #- mysql-common
+    #- mysql-client
+
+- name: ensure mysql listening on all ports
+  lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind-address line="bind-address = 0.0.0.0"
+
+- name: start up mysql service
+  shell: "service mysql start"
+- name: ensure mysql started
+  service: name=mysql state=started enabled=true
+
+- name: Set the root password
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_rootpw }}"
+    host: ''
+    name: root
+    password: "{{ mysql_rootpw }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Removes all anonymous user accounts
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_rootpw }}"
+
+- name: Removes the MySQL test database
+  mysql_db:
+    name: test
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_rootpw }}"
+
+- name: create demo user
+  mysql_user: login_user=root login_password="{{ mysql_rootpw }}" name=demo password=demo priv=bbtestdb.*:ALL host='%' state=present
+
+- name: create a test database
+  mysql_db:
+    name: bbtestdb
+    state: present
+    login_user: root
+    login_password: "{{ mysql_rootpw }}"
+
+- name: add sample data to database
+  copy: src=table.sql dest=/tmp/table.sql
+- name: insert sample data into database
+  mysql_db: name=bbtestdb state=import target=/tmp/table.sql login_user=root login_password="{{ mysql_rootpw }}"
+
+# - name: update mysql root password for all root accounts
+#   mysql_user: login_user=root login_password="{{ mysql_rootpw }}" name=root host={{ item }} password="{{ mysql_rootpw }}" priv=*.*:ALL state=present
+#   with_items:
+#     - "{{ ansible_hostname }}"
+#     - 127.0.0.1
+#     - ::1
+#     - localhost
+#     - '%'
+
+- name: restart up mysql service
+  shell: "service mysql restart"
+- name: ensure mysql restarted
+  service: name=mysql state=started enabled=true
+
+# - name: Reset root PW
+#   mysql_user:
+#     login_user=root
+#     login_password=''
+#     name=root
+#     host="{{ item }}"
+#     password="{{ mysql_rootpw }}"
+#     check_implicit_admin=yes
+#     priv="*.*:ALL,GRANT"
+#   with_items:
+#     - "{{ ansible_hostname }}"
+#     - 127.0.0.1
+#     - ::1
+#     - localhost
+#
