@@ -2,13 +2,17 @@
 FROM ubuntu:latest
 
 # Install python
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt update
+RUN apt install -y wget
+RUN apt install -y sudo
 RUN apt-get update && apt-get install software-properties-common -y \
       && apt-add-repository ppa:ansible/ansible -y \
-      && apt-get update && apt-get install ansible python-pip -y \
+      && apt-get update && apt-get install ansible python3-pip -y \
       && rm -rf /var/lib/apt/lists/*
 
-# Install python package
-RUN pip install --upgrade pip==9.0.3 && pip install netaddr deepdiff
+## Install python packages
+RUN pip3 install netaddr deepdiff
 
 # Setup SSH access for remote systems
 RUN mkdir -p /root/.ssh/
